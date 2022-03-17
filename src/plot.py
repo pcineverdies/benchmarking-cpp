@@ -17,7 +17,7 @@ def plot(fileName, folder):
     dataMin = min(data)
 
     dim = dataMax - dataMin
-    distance = 5
+    distance = dim / 100
     elements = math.ceil(dim / distance)
 
     plot  = []
@@ -26,12 +26,12 @@ def plot(fileName, folder):
     for i in range(elements):
         plot.append(0)
         xAxis.append((i*distance)+dataMin)
-    plot.append(0)
-    xAxis.append(0)
 
 
     for elem in data:
         index = math.floor((elem-dataMin)/distance)
+        if index == elements:
+            index = index - 1
         plot[index] = plot[index] + 1
 
 
@@ -48,6 +48,3 @@ def plot(fileName, folder):
     #salvare
     plt.savefig(folder+"/results/chart.eps", format="eps")
     plt.savefig(folder+"/results/chart.png")
-
-if __name__ == "__main__":
-    main()

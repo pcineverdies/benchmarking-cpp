@@ -12,7 +12,7 @@ def analyzeData(fileName):
     stdevV = stdev(data)
     medianV = median(data)
 
-    print("Mean : ", meanV, "us")
-    print("Stdev : ", stdevV, "us")
+    print("Mean  : ", meanV, "us")
+    print("Stdev  : ", stdevV, "us")
     print("Median : ", medianV, "us")
 
