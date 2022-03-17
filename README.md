@@ -1,23 +1,20 @@
 # benchmarking-cpp
 
-Light benchmarking environment, so you can test the speed of snippets of code on your machine!
-
-***
+Light benchmarking environment, so you can test the speed of snippets of C++ code.
 
 ## Background
-During my bachelor's thesis, I needed to test the speed of some C++ functions, so that I could measure the improvement in performance you get using AVX-512 extensions. 
+During my bachelor's thesis, I needed to test the speed of some C++ functions; the final goal was to proove that using the AVX-512 Intel's extension you could get some performance advantages. 
 
 Since I had some decent scripts to analyze execution time of little snippets, I put all together in this project.
 
-***
 
 ## What does it do
 
-In your C++ code you specify a starting point and a stop poing for the measure of time (for instance, immediately before and after the call of a function).
+In your C++ code you specify a starting point and a stop point for the measure of time (for instance, immediately before and after the call of a function).
 
-The scripts executes your code _N_ times, it measuers time in milliseconds and then calculates the mean, stdev and median of the values. 
+The scripts executes your code _N_ times, it measuers time in milliseconds and then calculates the mean, stdev and median of the values so obtained.  
 
-Using the values it draws a lollipop chart about the distribution of execution time (coming soon: edit the style of the chart). 
+Using the values it draws a lollipop chart about the distribution of execution time.
 
 ## How to use it
 
@@ -25,7 +22,7 @@ Using the values it draws a lollipop chart about the distribution of execution t
 2.  Create a folder inside it (we will call it `myFolder`) where you will put everything you need to run your C++ code;
 3.  To identify the fragment of code you want to test, wrap it inside the lines
 
-    ```
+    ```c++
     //+timer
     ...
     //-timer
@@ -33,7 +30,7 @@ Using the values it draws a lollipop chart about the distribution of execution t
 
     If you want to measure the execution time of the function `sort(int*,int)`, you can write
 
-    ```
+    ```c++
     //+timer
     sort(array,N);
     //-timer
@@ -42,10 +39,9 @@ Using the values it draws a lollipop chart about the distribution of execution t
     **!!!** Make sure the comments are written as above, or the script will raise an error. The two comments need to be in order and in the same file! 
 
 
-
 3. Create a file inside `myFolder/` called `config.json` having the following format:
 
-    ```
+    ```json
     {
         "ProjectName" : "myProject",
         "SourceFile"  : "myfile.cpp",
@@ -61,7 +57,7 @@ Using the values it draws a lollipop chart about the distribution of execution t
 
 5. Run the benchmark using the command
 
-    ```
+    ```bash
     python3 main.py myFolder
     ```
 
