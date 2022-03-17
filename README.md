@@ -46,8 +46,8 @@ Using the values it draws a lollipop chart about the distribution of execution t
         "ProjectName" : "myProject",
         "SourceFile"  : "myfile.cpp",
         "CompilerCommand" : "g++ -o ex myFile.cpp",
-        "NumberIterations" : 3600,
-        "Timeout" : 1
+        "NumberIterations" : 2048,
+        "Timeout" : 3600
     }
     ```
 - `ProjectName` is the name of your project;
