@@ -1,19 +1,19 @@
-#include "timer.h"
+#include "Timer.h"
 
-
-Timer::Timer(){
+Timer::Timer(std::string s){
     stopped = false;
+    this->outputName = s;
     this->m_startTimePoint = std::chrono::high_resolution_clock::now();
 }
 
 void Timer::stop(){
-    auto endTimePoint = std::chrono::high_resolution_clock::now();
+    std::chrono::time_point<std::chrono::high_resolution_clock> endTimePoint = std::chrono::high_resolution_clock::now();
 
-    auto start        = std::chrono::time_point_cast<std::chrono::microseconds>(m_startTimePoint).time_since_epoch().count();
-    auto end          = std::chrono::time_point_cast<std::chrono::microseconds>(endTimePoint).time_since_epoch().count();
+    long start        = std::chrono::time_point_cast<std::chrono::microseconds>(m_startTimePoint).time_since_epoch().count();
+    long end          = std::chrono::time_point_cast<std::chrono::microseconds>(endTimePoint).time_since_epoch().count();
 
-    auto duration = end - start;
-    std::cout << duration << std::endl;
+    long duration = end - start;
+    std::cout << "\n" << this->outputName << " : " << duration << "\n";
     stopped = true;
 }
 

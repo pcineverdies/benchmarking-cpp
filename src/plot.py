@@ -1,27 +1,23 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import math
-import sys
 
-data   = []
-counter = 0
-
-def main():
-    if(len(sys.argv)<2):
-        return
+def plot(fileName, folder):
+    data   = []
+    counter = 0
         
-    with open(sys.argv[1]+'.txt', 'r') as file:
+    with open(folder + "/results/data.txt", 'r') as file:
         for x in file:
             data.append(int(x))
             counter = counter + 1
 
     data.sort()
+    # Modificare data cleaning
     data = data[0:len(data)-math.floor(len(data)/100)]
     dataMax = max(data)
     dataMin = min(data)
 
     dim = dataMax - dataMin
-    distance = 50
+    distance = 5
     elements = math.ceil(dim / distance)
 
     plot  = []
@@ -30,6 +26,8 @@ def main():
     for i in range(elements):
         plot.append(0)
         xAxis.append((i*distance)+dataMin)
+    plot.append(0)
+    xAxis.append(0)
 
 
     for elem in data:
@@ -37,16 +35,19 @@ def main():
         plot[index] = plot[index] + 1
 
 
+    #Aggiungere opzioni visualizzazione
     (markers, stemlines, baseline) = plt.stem(xAxis,plot)
     plt.setp(markers, color="lightpink")
     plt.setp(stemlines, linestyle="-", color="limegreen", linewidth=0.5 )
     plt.setp(baseline, linestyle="-", color="black", linewidth=1)
     plt.xlabel('Time') 
     plt.ylabel('Number of occurrences') 
-    plt.title(label=sys.argv[1])
-    plt.show()
+    #modificare titolo
+    #plt.title()
 
-    plt.savefig(sys.argv[1])
+    #salvare
+    plt.savefig(folder+"/results/chart.eps", format="eps")
+    plt.savefig(folder+"/results/chart.png")
 
 if __name__ == "__main__":
     main()

@@ -1,7 +1,6 @@
-
 {
     "ProjectName" : "test",
-    "CompilerName" : "g++",
-    "CompilerFlags" : "-O1",
-    "NumberOfTest" : 128
+    "SourceFile"  : "test.cpp",
+    "CompilerCommand" : "g++ -o ex test.cpp",
+    "NumberIterations" : 128
 }

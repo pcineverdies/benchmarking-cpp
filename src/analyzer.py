@@ -1,14 +1,8 @@
 from statistics import mean, stdev, median
-import sys
 
-def main():
-    data = []
-    if(len(sys.argv)<2):
-        return 
+def analyzeData(fileName):
 
-    name  = sys.argv[1]
-
-    f = open(name + ".txt", "r")
+    f = open(fileName , "r")
     data = []
     for x in f:
         data.append(int(x))
@@ -18,9 +12,7 @@ def main():
     stdevV = stdev(data)
     medianV = median(data)
 
-    print("Mean", name, " : ", meanV, "us")
-    print("Stdev", name, " : ", stdevV, "us")
-    print("Median", name, " : ", medianV, "us")
+    print("Mean : ", meanV, "us")
+    print("Stdev : ", stdevV, "us")
+    print("Median : ", medianV, "us")
 
-if __name__ == "__main__":
-    main()
