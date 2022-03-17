@@ -1,0 +1,7 @@
+
+{
+    "ProjectName" : "test",
+    "CompilerName" : "g++",
+    "CompilerFlags" : "-O1",
+    "NumberOfTest" : 128
+}
