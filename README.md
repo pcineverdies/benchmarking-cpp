@@ -43,11 +43,11 @@ Using the values it draws a lollipop chart about the distribution of execution t
 
     ```json
     {
-        "ProjectName" : "myProject",
-        "SourceFile"  : "myfile.cpp",
-        "CompilerCommand" : "g++ -o ex myFile.cpp",
-        "NumberIterations" : 2048,
-        "Timeout" : 3600
+        "ProjectName"       : "myProject",
+        "SourceFile"        : "myfile.cpp",
+        "CompilerCommand"   : "g++ -o ex myFile.cpp",
+        "NumberIterations"  : 2048,
+        "Timeout"           : 3600
     }
     ```
 - `ProjectName` is the name of your project;
@@ -64,6 +64,8 @@ Using the values it draws a lollipop chart about the distribution of execution t
     where the argument is the name of the folder you created. During the benchmark, you will see a progress bar and some messages realted to the execution (eventually errors).
 
 At the end of the execution, if nothing went wrong, you will have on the screen the result of the computation; the script will create the folder `myFolder/results/` where you can find the chart and the file containing all the measures (if you want to elaborate it more than it does).
+
+You can find an example of source project in the folder `sort_example` in this repo. As shown there, you can insert whatever flag you want in the compiler command.
 
 ## What is still missing
     

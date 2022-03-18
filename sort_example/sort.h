@@ -1,0 +1,1 @@
+void sort(int*, int);
