@@ -12,7 +12,7 @@ Since I had some decent scripts to analyze execution time of little snippets, I 
 
 In your C++ code you specify a starting point and a stop point for the measure of time (for instance, immediately before and after the call of a function).
 
-The scripts executes your code _N_ times, it measuers time in milliseconds and then calculates the mean, stdev and median of the values so obtained.  
+The scripts executes your code _N_ times, it measuers time in microseconds and then calculates the mean, stdev and median of the values so obtained.  
 
 Using the values it draws a lollipop chart about the distribution of execution time.
 
