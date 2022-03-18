@@ -61,14 +61,11 @@ Using the values it draws a lollipop chart about the distribution of execution t
     python3 main.py myFolder
     ```
 
-    where the argument is the name of the folder you created.
+    where the argument is the name of the folder you created. During the benchmark, you will see a progress bar and some messages realted to the execution (eventually errors).
 
-At the end of the execution, if nothing went wrong, you will have on the screen the result of the computation; the script will create the folder `myFolder/results/` where you can find the chart, the file containing all the measures (if you want to elaborate it more than it does) and the same recap about mean, stdev and median inside a `.txt` file. 
+At the end of the execution, if nothing went wrong, you will have on the screen the result of the computation; the script will create the folder `myFolder/results/` where you can find the chart and the file containing all the measures (if you want to elaborate it more than it does).
 
 ## What is still missing
-
-Tons of things:
     
-- Options to modify the chart inside the `config.json` file;
-- Display of the state of the benchmark (for instance, the number of remaining tests it needs to execute);
-- ???
+- Options to modify something inside the `config.json` file;
+

@@ -35,8 +35,8 @@ def openJSON(pathName):
             data = json.load(json_file)
             return data
     except EnvironmentError: # parent of IOError, OSError *and* WindowsError where available
-        print("Can't open config file!")
-        print("Make sure you choose the correct folder!")
+        print(colored("Can't open config file!", "red"))
+        print(colored("Make sure you choose the correct folder!", "red"))
         exit()
 
 
@@ -103,9 +103,13 @@ def changeCompilerCommand(compilerCommand, sourceFile, outputName):
     return compilerCommand
 
 def runBenchmarking(NumberIterations, folder, outputName, timeoutInput):
+    print(colored("->\tRunning benchmark...\n","green"))
     try:
         with open(folder + "results/data.txt", 'a') as dataFile: 
-            for _ in range(NumberIterations):
+
+            prograssBar.printProgressBar(0, NumberIterations, prefix = 'Progress:', suffix = 'Complete', length = 50)
+
+            for i in range(NumberIterations):
                 process = subprocess.Popen("./"+outputName,  shell=True, cwd = folder, stdout=subprocess.PIPE)
                 process.wait(timeout=timeoutInput)
                 if process.returncode != 0:
@@ -114,43 +118,48 @@ def runBenchmarking(NumberIterations, folder, outputName, timeoutInput):
                 output = process.stdout.read().decode("ascii").split()
                 time = output[output.index(outputName)+2]
                 dataFile.write(time + "\n")
+                prograssBar.printProgressBar(i+1, NumberIterations, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
     except TimeoutExpired:
-        print("An execution did not terminated within the timeout!")
+        print(colored("\nAn execution did not terminated within the timeout!","red"))
         deleteTempFiles(folder, outputName)
         exit()        
 
     except:
-        print("Something went wrong during the benchmarking")
+        print(colored("\nSomething went wrong during the benchmarking","red"))
         deleteTempFiles(folder, outputName)
         exit()
 
 def main():
 
     if(len(sys.argv)<2):
-        print("No folder name as argument!")
+        print(colored("No folder name as argument!","red"))
         return
     
     projectName = sys.argv[1]
     folder = "./" + projectName + "/"
+
+    print(colored('Start benchmark of ' + sys.argv[1], 'green'))
 
     jsonPath = folder + "config.json"
     config = openJSON(jsonPath)
 
     neededKeys = [ "ProjectName","SourceFile","CompilerCommand","NumberIterations", "Timeout"]
     if (neededKeys - config.keys()):
-        print("Config file is not correct. Please check you inserted the right keys!")
+        print(colored("Config file is not correct. Please check you inserted the right keys!", "red"))
         exit()
+    
+    print(colored('->\tconfig.json read correctly', 'green'))
 
     sourceFile = config["SourceFile"]
 
     command = "rm -rf results"
     if executeCommand(command, folder)!=0:
-        print("Could not delete results folder!")
+        print(colored("Could not delete results folder!", "red"))
         exit()
     command = "mkdir results"
     if executeCommand(command, folder)!=0:
-        print("Could not create results folder!")
+        print(colored("Could not create results folder!", "red"))
         exit()
 
     outputName = changeSourceFile(folder, sourceFile)
@@ -158,18 +167,21 @@ def main():
     compilerCommand = changeCompilerCommand(config["CompilerCommand"], sourceFile, outputName)
 
     if executeCommand(compilerCommand, folder)!=0:
-        print("Something went wrong during the compiling of code.")
-        print("Make sure you wrote the command correctly")
+        print(colored("Something went wrong during the compiling of code.","red"))
+        print(colored("Make sure you wrote the command correctly","red"))
         deleteTempFiles(folder, outputName)
         exit()
         
     runBenchmarking(int(config["NumberIterations"]), folder, outputName, config["Timeout"])
 
+    print(colored("\n->\tAnalyzing data...","green"))
     analyzer.analyzeData(folder + "results/data.txt")
+
+    print(colored("->\tDrawing plot...","green"))
     plot.plot(config["ProjectName"], folder)
 
     deleteTempFiles(folder, outputName, resultsToo = False)
-
+    print(colored("->\tBenchmark finished!","green"))
 
 if __name__ == "__main__":
     main()

@@ -1,4 +1,5 @@
 from statistics import mean, stdev, median
+from termcolor import colored
 
 def analyzeData(fileName):
 
@@ -12,7 +13,9 @@ def analyzeData(fileName):
     stdevV = stdev(data)
     medianV = median(data)
 
+    print(colored("===========================================", "magenta"))
     print("Mean  : ", meanV, "us")
     print("Stdev  : ", stdevV, "us")
     print("Median : ", medianV, "us")
+    print(colored("===========================================", "magenta"))
 
