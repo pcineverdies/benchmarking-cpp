@@ -28,11 +28,11 @@ Using the values it draws a lollipop chart about the distribution of execution t
     //-timer
     ```
 
-    If you want to measure the execution time of the function `sort(int*,int)`, you can write
+    If you want to measure the execution time of the function `sort(int*, int)`, you can write
 
     ```c++
     //+timer
-    sort(array,N);
+    sort(vect, N);
     //-timer
     ```
 
