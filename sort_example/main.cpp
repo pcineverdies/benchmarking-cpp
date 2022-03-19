@@ -13,9 +13,9 @@ int main(){
     for(auto& elem : vect)
         elem = randomGenerator(N);
 
-    //+timer
+    //START_BENCHMARK
     sort(vect, N);
-    //-timer
+    //STOP_BENCHMARK
 
     for(auto& elem : vect){
         std::cout << elem << std::endl;

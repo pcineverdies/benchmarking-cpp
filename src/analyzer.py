@@ -14,7 +14,7 @@ def analyzeData(fileName):
     medianV = median(data)
 
     print(colored("===========================================", "magenta"))
-    print("Mean  : ", meanV, "us")
+    print("Mean   : ", meanV, "us")
     print("Stdev  : ", stdevV, "us")
     print("Median : ", medianV, "us")
     print(colored("===========================================", "magenta"))

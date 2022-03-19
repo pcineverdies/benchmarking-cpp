@@ -23,17 +23,17 @@ Using the values it draws a lollipop chart about the distribution of execution t
 3.  To identify the fragment of code you want to test, wrap it inside the lines
 
     ```c++
-    //+timer
+    //START_BENCHMARK
     ...
-    //-timer
+    //STOP_BENCHMARK
     ```
 
     If you want to measure the execution time of the function `sort(int*, int)`, you can write
 
     ```c++
-    //+timer
+    //START_BENCHMARK
     sort(vect, N);
-    //-timer
+    //STOP_BENCHMARK
     ```
 
     **!!!** Make sure the comments are written as above, or the script will raise an error. The two comments need to be in order and in the same file! 

@@ -54,17 +54,17 @@ def changeSourceFile(folder, fileName):
             output.write("#include \"../src/Timer.h\"\n")
             sourceFile = fileinput.input(folder + fileName, inplace=False)
             for line in sourceFile: 
-                if line.find("//+timer") != -1 and not foundStart:
-                    output.write(line.rstrip().replace('//+timer', startTimer)+"\n")
+                if line.find("//START_BENCHMARK") != -1 and not foundStart:
+                    output.write(line.rstrip().replace('//START_BENCHMARK', startTimer)+"\n")
                     foundStart = True
-                elif line.find("//+timer") != -1 and foundStart:
+                elif line.find("//START_BENCHMARK") != -1 and foundStart:
                     raise ValueError
-                elif line.find("//-timer") != -1 and foundStart and not foundStop:
-                    output.write(line.rstrip().replace('//-timer', stopTimer)+"\n")
+                elif line.find("//STOP_BENCHMARK") != -1 and foundStart and not foundStop:
+                    output.write(line.rstrip().replace('//STOP_BENCHMARK', stopTimer)+"\n")
                     foundStop = True
-                elif line.find("//-timer") != -1 and not foundStart:
+                elif line.find("//STOP_BENCHMARK") != -1 and not foundStart:
                     raise ValueError
-                elif line.find("//-timer") != -1 and foundStop:
+                elif line.find("//STOP_BENCHMARK") != -1 and foundStop:
                     raise ValueError
                 else:
                     output.write(line.rstrip()+"\n")
